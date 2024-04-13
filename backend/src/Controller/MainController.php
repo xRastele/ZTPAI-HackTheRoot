@@ -19,10 +19,18 @@ class MainController
         return new JsonResponse(['message' => 'Learning page']);
     }
 
-    #[Route('/challenges/{id}', name: 'challenges')]
-    public function challenges(int $id): JsonResponse
+    #[Route('/challenges', name: 'challenges')]
+    public function listChallenges(): JsonResponse
     {
-        return new JsonResponse(['message' => 'Challenges page', 'id' => $id]);
+
+        return new JsonResponse(['message' => 'List of all challenges']);
+    }
+
+    #[Route('/challenges/{id}', name: 'challenge_details')]
+    public function challengeDetails(int $id): JsonResponse
+    {
+
+        return new JsonResponse(['message' => 'Challenge details', 'id' => $id]);
     }
 
     #[Route('/leaderboard')]
