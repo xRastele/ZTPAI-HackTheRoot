@@ -1,0 +1,68 @@
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw;
+    color: white;
+    border-bottom: 2px solid white;
+    align-items: center; /* Dodane do wypośrodkowania elementów */
+}
+
+.search-bar input {
+    width: 100%;
+    background-color: #0F0F0F;
+    border: 1px solid #424242;
+    border-radius: 5px;
+    color: white;
+    padding: 0.5vw 0.5vw 0.5vw 35px;
+    background-image: url('search_icon.svg');
+    background-repeat: no-repeat;
+    background-position: 5px center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-points {
+    font-size: 1.2vw;
+}
+
+.user-info .user-points {
+    margin-right: 2vw; /* Zwiększono od 1vw do 2vw */
+}
+
+.user-info .user-nickname {
+    color: white;
+    text-decoration: none;
+}
+
+.user-info .user-nickname {
+    color: white;
+    text-decoration: none;
+    padding: 10px 30px 10px 10px; /* Zwiększono prawy padding */
+    border-radius: 5px;
+    background-color: #272727;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.user-info .user-nickname::after {
+    content: '';
+    position: absolute;
+    right: 10px; /* Zwiększono od 2px do 5px */
+    top: 45%; /* Dodano, aby przesunąć trójkąt w dół */
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid white;
+}
+
+.user-info .user-nickname img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
