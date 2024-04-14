@@ -1,11 +1,11 @@
 import React from 'react';
 import './SideBar.css';
-import logo from './logo.svg';
-import homeIcon from './home_icon.svg';
-import learningIcon from './learning_icon.svg';
-import challengesIcon from './challenges_icon.svg';
-import leaderboardIcon from './leaderboard_icon.svg';
-import settingsIcon from './settings_icon.svg';
+import logo from '../../assets/logo.svg';
+import homeIcon from '../../assets/home_icon.svg';
+import learningIcon from '../../assets/learning_icon.svg';
+import challengesIcon from '../../assets/challenges_icon.svg';
+import leaderboardIcon from '../../assets/leaderboard_icon.svg';
+import settingsIcon from '../../assets/settings_icon.svg';
 
 const SideBar = () => {
     return (

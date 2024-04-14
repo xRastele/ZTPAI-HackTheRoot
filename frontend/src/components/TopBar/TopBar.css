@@ -4,7 +4,7 @@
     padding: 1vw;
     color: white;
     border-bottom: 2px solid white;
-    align-items: center; /* Dodane do wypośrodkowania elementów */
+    align-items: center;
 }
 
 .search-bar input {
@@ -14,7 +14,6 @@
     border-radius: 5px;
     color: white;
     padding: 0.5vw 0.5vw 0.5vw 35px;
-    background-image: url('search_icon.svg');
     background-repeat: no-repeat;
     background-position: 5px center;
 }
@@ -29,7 +28,7 @@
 }
 
 .user-info .user-points {
-    margin-right: 2vw; /* Zwiększono od 1vw do 2vw */
+    margin-right: 2vw;
 }
 
 .user-info .user-nickname {
@@ -40,7 +39,7 @@
 .user-info .user-nickname {
     color: white;
     text-decoration: none;
-    padding: 10px 30px 10px 10px; /* Zwiększono prawy padding */
+    padding: 10px 30px 10px 10px;
     border-radius: 5px;
     background-color: #272727;
     position: relative;
@@ -51,8 +50,8 @@
 .user-info .user-nickname::after {
     content: '';
     position: absolute;
-    right: 10px; /* Zwiększono od 2px do 5px */
-    top: 45%; /* Dodano, aby przesunąć trójkąt w dół */
+    right: 10px;
+    top: 45%;
     width: 0;
     height: 0;
     border-left: 6px solid transparent;

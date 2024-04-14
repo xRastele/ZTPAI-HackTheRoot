@@ -1,7 +1,7 @@
 import React from 'react';
 import './TopBar.css';
-import searchIcon from './search_icon.svg';
-import profilePic from './placeholder_profile.png'; // zaimportuj obrazek profilowy
+import searchIcon from '../../assets/search_icon.svg';
+import profilePic from '../../assets/placeholder_profile.png';
 
 const TopBar = () => {
     return (

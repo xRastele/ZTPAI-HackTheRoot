@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import SideBar from './SideBar';
-import TopBar from './TopBar';
-import Users from './Users';
+import './styles/App.css';
+import SideBar from './components/SideBar/SideBar';
+import TopBar from './components/TopBar/TopBar';
+import Users from './components/Users/Users';
 
 const App = () => {
     return (
