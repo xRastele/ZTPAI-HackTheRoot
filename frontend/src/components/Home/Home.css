@@ -1,0 +1,136 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 40%;
+    background-color: #272727;
+    color: #fff;
+    margin: 0 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: red;
+}
+
+button {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #333;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin: 20px 0;
+}
+
+.large-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 90%;
+    background-color: #272727;
+    color: #fff;
+    margin: 0 10px;
+}
+
+.small-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 41%;
+    background-color: #0F0F0F;
+    color: #fff;
+    margin: 0 5px;
+}
+
+.arrow {
+    font-size: 2em;
+    color: #fff;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.centered-title {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.transparent-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 20vh;
+    height: 15vh;
+    margin: 0 10px;
+}
+
+.transparent-card h3 {
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}
+
+.transparent-card img {
+    width: 25px;
+    height: 25px;
+}
+
+.status.recommended {
+    color: #A0A0A0;
+    margin: 0;
+}

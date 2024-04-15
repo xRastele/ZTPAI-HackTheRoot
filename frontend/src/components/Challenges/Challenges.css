@@ -1,0 +1,53 @@
+.challenges-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-row {
+    display: flex;
+    justify-content: start;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.challenge-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.challenge-button.active {
+    background-color: #A0A0A0;
+}
+
+hr {
+    border: 1px solid #fff;
+    margin: 20px 0;
+}
+
+.table-header, .challenge-row {
+    display: flex;
+    justify-content: center;
+}
+
+.table-header p, .challenge-row p {
+    flex: 1;
+    text-align: center;
+}
+
+.challenge-row {
+    border: 1px solid #fff;
+}
+
+.challenge-row:last-child {
+    border-bottom: 1px solid #fff; /* dodanie dolnej krawędzi dla ostatniego wiersza */
+}
+
+.challenge-row:first-child {
+    border-bottom: 1px solid #fff; /* dodanie dolnej krawędzi dla ostatniego wiersza */
+}
