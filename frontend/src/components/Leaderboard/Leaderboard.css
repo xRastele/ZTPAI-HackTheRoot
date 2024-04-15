@@ -1,0 +1,32 @@
+.leaderboard-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #0F0F0F;
+    margin: 0;
+    padding: 0;
+}
+
+.button-row {
+    display: flex;
+    justify-content: start;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.table-header, .leaderboard-row {
+    display: flex;
+    justify-content: center;
+}
+
+.table-header p, .leaderboard-row p {
+    flex: 1;
+    text-align: center;
+}
+
+.leaderboard-row:nth-child(even) {
+    background-color: #272727;
+}
+
+.leaderboard-row:nth-child(odd) {
+    background-color: #0F0F0F;
+}

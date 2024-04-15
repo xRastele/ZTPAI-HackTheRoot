@@ -6,6 +6,7 @@ import TopBar from './components/TopBar/TopBar';
 import Users from './components/Users/Users';
 import Home from './components/Home/Home';
 import Challenges from './components/Challenges/Challenges';
+import Leaderboard from './components/Leaderboard/Leaderboard';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                             <Route path="/" element={<Home />} />
                             <Route path="/users" element={<Users />} />
                             <Route path="/challenges" element={<Challenges />} />
+                            <Route path="/leaderboard" element={<Leaderboard />} />
                         </Routes>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ const SideBar = () => {
     return (
         <div className="sidebar">
             <img src={logo} alt="Logo" className="sidebar-logo" />
-            <a href="/home" className="sidebar-item">
+            <a href="/" className="sidebar-item">
                 <img src={homeIcon} alt="Home" className="sidebar-item-icon" />
                 <span className="sidebar-item-text">Home</span>
             </a>
