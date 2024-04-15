@@ -9,7 +9,6 @@ const Challenges = () => {
                 <button className="challenge-button">Not completed</button>
                 <button className="challenge-button">Completed</button>
             </div>
-            <hr />
             <div className="table-header">
                 <p>Challenge</p>
                 <p>Difficulty</p>

@@ -5,9 +5,9 @@
 
 .button-row {
     display: flex;
-    justify-content: start;
-    gap: 30px;
-    margin-bottom: 20px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5vh;
 }
 
 .challenge-button {
@@ -25,9 +25,9 @@
     background-color: #A0A0A0;
 }
 
-hr {
-    border: 1px solid #fff;
-    margin: 20px 0;
+.table-header {
+    font-weight: bold;
+    color: red;
 }
 
 .table-header, .challenge-row {
@@ -42,12 +42,9 @@ hr {
 
 .challenge-row {
     border: 1px solid #fff;
+    border-bottom: 0;
 }
 
 .challenge-row:last-child {
-    border-bottom: 1px solid #fff; /* dodanie dolnej krawędzi dla ostatniego wiersza */
-}
-
-.challenge-row:first-child {
-    border-bottom: 1px solid #fff; /* dodanie dolnej krawędzi dla ostatniego wiersza */
+    border-bottom: 1px solid #fff;
 }
