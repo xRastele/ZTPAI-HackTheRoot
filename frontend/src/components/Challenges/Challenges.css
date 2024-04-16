@@ -19,6 +19,7 @@
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
+    margin-left: 2vh;
 }
 
 .challenge-button.active {
