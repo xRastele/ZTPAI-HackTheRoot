@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProgressRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,17 +11,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Progress
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $id_user = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Challenge $id_challenge = null;
+    private ?Challenge $challenge = null;
 
     #[ORM\Column]
     private ?bool $is_completed = null;
@@ -35,24 +36,24 @@ class Progress
 
     public function getIdUser(): ?User
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(?User $id_user): static
+    public function setIdUser(?User $user): static
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
 
     public function getIdChallenge(): ?Challenge
     {
-        return $this->id_challenge;
+        return $this->challenge;
     }
 
-    public function setIdChallenge(?Challenge $id_challenge): static
+    public function setIdChallenge(?Challenge $challenge): static
     {
-        $this->id_challenge = $id_challenge;
+        $this->challenge = $challenge;
 
         return $this;
     }

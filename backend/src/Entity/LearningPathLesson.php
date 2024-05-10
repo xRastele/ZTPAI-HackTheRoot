@@ -9,17 +9,17 @@ use Doctrine\ORM\Mapping as ORM;
 class LearningPathLesson
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?LearningPath $id_learning_path = null;
+    private ?LearningPath $learning_path = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Lesson $id_lesson = null;
+    private ?Lesson $lesson = null;
 
     public function getId(): ?int
     {
@@ -28,24 +28,24 @@ class LearningPathLesson
 
     public function getIdLearningPath(): ?LearningPath
     {
-        return $this->id_learning_path;
+        return $this->learning_path;
     }
 
-    public function setIdLearningPath(?LearningPath $id_learning_path): static
+    public function setIdLearningPath(?LearningPath $learning_path): static
     {
-        $this->id_learning_path = $id_learning_path;
+        $this->learning_path = $learning_path;
 
         return $this;
     }
 
     public function getIdLesson(): ?Lesson
     {
-        return $this->id_lesson;
+        return $this->lesson;
     }
 
-    public function setIdLesson(?Lesson $id_lesson): static
+    public function setIdLesson(?Lesson $lesson): static
     {
-        $this->id_lesson = $id_lesson;
+        $this->lesson = $lesson;
 
         return $this;
     }

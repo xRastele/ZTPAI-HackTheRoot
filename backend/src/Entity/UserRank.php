@@ -9,17 +9,17 @@ use Doctrine\ORM\Mapping as ORM;
 class UserRank
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $id_user = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Rank $id_rank = null;
+    private ?Rank $rank = null;
 
     public function getId(): ?int
     {
@@ -28,24 +28,24 @@ class UserRank
 
     public function getIdUser(): ?User
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(?User $id_user): static
+    public function setIdUser(?User $user): static
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
 
     public function getIdRank(): ?Rank
     {
-        return $this->id_rank;
+        return $this->rank;
     }
 
-    public function setIdRank(?Rank $id_rank): static
+    public function setIdRank(?Rank $rank): static
     {
-        $this->id_rank = $id_rank;
+        $this->rank = $rank;
 
         return $this;
     }

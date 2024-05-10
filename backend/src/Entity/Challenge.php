@@ -9,17 +9,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Challenge
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Reward $id_reward = null;
+    private ?Reward $reward = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Difficulty $id_difficulty = null;
+    private ?Difficulty $difficulty = null;
 
     public function getId(): ?int
     {
@@ -28,24 +28,24 @@ class Challenge
 
     public function getIdReward(): ?Reward
     {
-        return $this->id_reward;
+        return $this->reward;
     }
 
-    public function setIdReward(?Reward $id_reward): static
+    public function setIdReward(?Reward $reward): static
     {
-        $this->id_reward = $id_reward;
+        $this->reward = $reward;
 
         return $this;
     }
 
     public function getIdDifficulty(): ?Difficulty
     {
-        return $this->id_difficulty;
+        return $this->difficulty;
     }
 
-    public function setIdDifficulty(?Difficulty $id_difficulty): static
+    public function setIdDifficulty(?Difficulty $difficulty): static
     {
-        $this->id_difficulty = $id_difficulty;
+        $this->difficulty = $difficulty;
 
         return $this;
     }
