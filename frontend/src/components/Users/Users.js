@@ -1,22 +1,34 @@
 import React, { useEffect, useState } from 'react';
 
 function Users() {
-    const [user, setUser] = useState(null);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8000/api/users/')
+        const token = localStorage.getItem('Authorization');
+
+        fetch('https://localhost:8000/api/users/', {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/ld+json",
+                "Authorization": token
+            }
+        })
             .then(response => response.json())
-            .then(data => setUser(data));
+            .then(data => setUsers(data['hydra:member']));
     }, []);
 
-    if (!user) {
-        return <div></div>;
+    if (!users) {
+        return <div>Loading...</div>;
     }
 
     return (
         <div>
-            <h1>{user.username}</h1>
-            <p>{user.email}</p>
+            {users.map(user => (
+                <div key={user.id}>
+                    <h1>{user.username}</h1>
+                    <p>{user.email}</p>
+                </div>
+            ))}
         </div>
     );
 }
