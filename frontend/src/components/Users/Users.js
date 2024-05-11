@@ -1,32 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
-const Users = () => {
-    const [users, setUsers] = useState([]);
+function Users() {
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/users')
-            .then(response => {
-                setUsers(response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        fetch('http://localhost:8000/api/users/')
+            .then(response => response.json())
+            .then(data => setUser(data));
     }, []);
+
+    if (!user) {
+        return <div></div>;
+    }
 
     return (
         <div>
-            <h1>Users</h1>
-            {users.map(user => (
-                <div key={user.id}>
-                    <h2>User ID: {user.id}</h2>
-                    <p>Email: {user.email}</p>
-                    <p>Username: {user.username}</p>
-                    <p>Is Admin: {user.is_admin ? 'Yes' : 'No'}</p>
-                </div>
-            ))}
+            <h1>{user.username}</h1>
+            <p>{user.email}</p>
         </div>
     );
-};
+}
 
 export default Users;
