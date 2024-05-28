@@ -21,6 +21,16 @@ class LeaderboardRepository extends ServiceEntityRepository
         parent::__construct($registry, Leaderboard::class);
     }
 
+    public function findAllUsernamePoints()
+    {
+        return $this->createQueryBuilder('l')
+            ->select('u.username, l.points')
+            ->join('l.user', 'u')
+            ->orderBy('l.points', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Leaderboard[] Returns an array of Leaderboard objects
     //     */
