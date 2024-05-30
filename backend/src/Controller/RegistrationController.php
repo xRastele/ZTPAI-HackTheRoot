@@ -9,6 +9,7 @@ use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
@@ -89,4 +90,38 @@ class RegistrationController extends AbstractController
 
         return $this->redirectToRoute('app_register');
     }
+
+    #[Route('/api/register', name: 'api_register', methods: ['POST'])]
+    public function register2(
+        Request $request,
+        UserPasswordHasherInterface $passwordHasher,
+        EntityManagerInterface $entityManager
+    ): JsonResponse {
+        $data = json_decode($request->getContent(), true);
+
+        if (!$data || !isset($data['username']) || !isset($data['email']) || !isset($data['password'])) {
+            return new JsonResponse(['error' => 'Invalid data'], 400);
+        }
+
+        $user = new User();
+        $user->setUsername($data['username']);
+        $user->setEmail($data['email']);
+        $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
+        $user->setPassword($hashedPassword);
+        $user->setVerified(false);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            (new TemplatedEmail())
+                ->from(new Address('support@hacktheroot.com', 'HackTheRoot'))
+                ->to($user->getEmail())
+                ->subject('Please Confirm your Email')
+                ->htmlTemplate('registration/confirmation_email.html.twig')
+        );
+
+        return new JsonResponse(['status' => 'User created, confirmation email sent'], 201);
+    }
+
 }
