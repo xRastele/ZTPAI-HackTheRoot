@@ -45,6 +45,15 @@
     background-color: #A0A0A0;
     color: #fff;
     cursor: pointer;
+
+}
+
+button {
+    transition: background-color 0.25s ease;
+}
+
+button:active {
+    background-color: red;
 }
 
 a.login-link:link, a.login-link:visited {
