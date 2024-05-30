@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import logo from '../../assets/logo.svg';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 async function loginUser(username, password) {
@@ -35,17 +36,24 @@ async function loginUser(username, password) {
 }
 
 const Login = () => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleLogin = async (event) => {
         event.preventDefault();
 
         try {
             const token = await loginUser(username, password);
+            if (!token) {
+                throw new Error('Bad username or password');
+            }
             console.log('User logged in, token:', token);
+            navigate('/');
         } catch (error) {
             console.error('Login failed:', error);
+            setErrorMessage(error.message);
         }
     };
 
@@ -59,6 +67,7 @@ const Login = () => {
                     <Link to="/register" className="start-button">Start learning</Link>
                 </div>
                 <div className="right-side">
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
                     <form className="login-form" onSubmit={handleLogin}>
                         <input type="text" placeholder="Username" required value={username} onChange={e => setUsername(e.target.value)} />
                         <input type="password" placeholder="Password" required value={password} onChange={e => setPassword(e.target.value)} />
