@@ -1,25 +1,43 @@
 import './Leaderboard.css';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Leaderboard = () => {
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem('Authorization');
-
-        axios.get('https://localhost:8000/api/leaderboard', {
-            headers: {
-                "Authorization": token
-            }
-        })
-            .then(response => {
+        const fetchLeaderboard = async () => {
+            try {
+                const token = localStorage.getItem('Authorization');
+                if (!token) {
+                    throw new Error('Authorization token not found');
+                }
+                const config = {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                };
+                const response = await axios.get('https://localhost:8000/api/leaderboard', config);
                 setUsers(response.data);
-            })
-            .catch(error => {
-                console.error('There was an error!', error);
-            });
-    }, []);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+                if (err.message === 'Authorization token not found') {
+                    navigate('/login'); // Redirect to login page
+                }
+            }
+        };
+
+        fetchLeaderboard();
+    }, [navigate]);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="leaderboard-page">
