@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './Challenges.css';
 
 const Challenges = () => {
+    const [challenges, setChallenges] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchChallenges = async () => {
+            try {
+                const token = localStorage.getItem('Authorization');
+                if (!token) {
+                    throw new Error('Authorization token not found');
+                }
+                const config = {
+                    headers: { Authorization: `Bearer ${token}` }
+                };
+                const response = await axios.get('https://localhost:8000/api/challenges', config);
+                setChallenges(response.data['hydra:member']);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchChallenges();
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div className="challenges-page">
             <div className="button-row">
@@ -12,27 +42,15 @@ const Challenges = () => {
             <div className="table-header">
                 <p>Challenge</p>
                 <p>Difficulty</p>
-                <p>Solved by</p>
-                <p>Category</p>
+                <p>Reward</p>
             </div>
-            <div className="challenge-row">
-                <p>DeserializeMe!</p>
-                <p>Easy</p>
-                <p>127</p>
-                <p>Other</p>
-            </div>
-            <div className="challenge-row">
-                <p>Injection 1</p>
-                <p>Easy</p>
-                <p>255</p>
-                <p>SQL Injection</p>
-            </div>
-            <div className="challenge-row">
-                <p>Injection 2</p>
-                <p>Medium</p>
-                <p>88</p>
-                <p>SQL Injection</p>
-            </div>
+            {challenges.map((challenge) => (
+                <div className="challenge-row" key={challenge.id}>
+                    <p>{challenge.title}</p>
+                    <p>{challenge.idDifficulty.name}</p>
+                    <p>{challenge.idReward.points}</p>
+                </div>
+            ))}
         </div>
     );
 };
