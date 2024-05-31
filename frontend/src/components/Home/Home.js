@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Home.css';
 import commandInjectionIcon from '../../assets/command_injection.svg';
 import deserializeMeIcon from '../../assets/deserializeme.svg';
+
 const Home = () => {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem('Authorization');
+        axios.get('https://localhost:8000/api/home', {
+            headers: {
+                "Authorization": `${token}`
+            }
+        })
+            .then(response => setData(response.data))
+            .catch(error => console.error(error));
+    }, []);
+
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="home-page">
             <div className="row">
                 <div className="card">
-                    <p>5 challenges completed</p>
-                    <h2>Rank: Script kiddie</h2>
+                    <p>{data.completedChallengesCount} challenges completed</p>
+                    <h2>Rank: {data.rank}</h2>
                     <div className="progress-bar">
                         <div className="progress" style={{width: '10%'}}></div>
                     </div>
-                    <p>100/1000 pts</p>
+                    <p>{data.points}/1000 pts</p>
                 </div>
                 <div className="card">
                     <p>Get access to paid challenges</p>
@@ -25,30 +44,24 @@ const Home = () => {
             <div className="row">
                 <div className="large-card">
                     <div className="arrow invisible">{'<'}</div>
-                    <div className="small-card">
-                        <h3>Title 1</h3>
-                        <p>Description 1</p>
-                    </div>
-                    <div className="small-card">
-                        <h3>Title 2</h3>
-                        <p>Description 2</p>
-                    </div>
+                    {data.learningPaths.map((path, index) => (
+                        <div className="small-card" key={index}>
+                            <h3>{path.title}</h3>
+                            <p>{path.description}</p>
+                        </div>
+                    ))}
                     <div className="arrow">{'>'}</div>
                 </div>
             </div>
 
             <div className="row">
-                <div className="transparent-card">
-                    <img src={commandInjectionIcon} alt="Command Injection Icon" />
-                    <h3>Title 1</h3>
-                    <p className="status recommended">In progress</p>
-                </div>
-                <div className="transparent-card">
-                    <img src={deserializeMeIcon} alt="Deserialize Me Icon" />
-                    <h3>Title 2</h3>
-                    <p className="status recommended">Recommended</p>
-                    <p className="status recommended">challenge</p>
-                </div>
+                {data.challengeTitles.map((challenge, index) => (
+                    <div className="transparent-card" key={index}>
+                        <img src={commandInjectionIcon} alt="Command Injection Icon" />
+                        <h3>{challenge.title}</h3>
+                        <p className="status recommended">In progress</p>
+                    </div>
+                ))}
             </div>
         </div>
     );
