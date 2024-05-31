@@ -21,28 +21,25 @@ class ChallengeRepository extends ServiceEntityRepository
         parent::__construct($registry, Challenge::class);
     }
 
-    //    /**
-    //     * @return Challenge[] Returns an array of Challenge objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function getRandomIncompleteChallengeTitles($userId, $challengeIds, $limit = 2)
+    {
+        $challenges = $this->createQueryBuilder('c')
+            ->select('c.title')
+            ->where('c.id IN (:challengeIds)')
+            ->setParameter('challengeIds', $challengeIds)
+            ->getQuery()
+            ->getResult();
 
-    //    public function findOneBySomeField($value): ?Challenge
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        shuffle($challenges);
+
+        return array_slice($challenges, 0, $limit);
+    }
+
+    public function findAllIds()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.id')
+            ->getQuery()
+            ->getResult();
+    }
 }

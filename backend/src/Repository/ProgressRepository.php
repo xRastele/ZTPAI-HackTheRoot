@@ -21,28 +21,26 @@ class ProgressRepository extends ServiceEntityRepository
         parent::__construct($registry, Progress::class);
     }
 
-    //    /**
-    //     * @return Progress[] Returns an array of Progress objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function countCompletedChallenges($userId)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('count(p.id)')
+            ->innerJoin('p.user', 'u')
+            ->where('u.id = :userId')
+            ->andWhere('p.is_completed = true')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
-    //    public function findOneBySomeField($value): ?Progress
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function getCompletedChallengeIds($userId)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('IDENTITY(p.challenge)')
+            ->where('p.user = :userId')
+            ->andWhere('p.is_completed = true')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getResult();
+    }
 }

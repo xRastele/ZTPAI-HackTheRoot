@@ -31,6 +31,16 @@ class LeaderboardRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findPointsByUserId($userId)
+    {
+        return $this->createQueryBuilder('l')
+            ->select('l.points')
+            ->where('l.user = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     //    /**
     //     * @return Leaderboard[] Returns an array of Leaderboard objects
     //     */
