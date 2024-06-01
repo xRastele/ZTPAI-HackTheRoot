@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './TopBar.css';
 import searchIcon from '../../assets/search_icon.svg';
@@ -6,6 +7,7 @@ import profilePic from '../../assets/placeholder_profile.png';
 
 const TopBar = () => {
     const [userData, setUserData] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('Authorization');
@@ -15,7 +17,10 @@ const TopBar = () => {
             }
         })
             .then(response => setUserData(response.data))
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                navigate('/login');
+            });
     }, []);
 
     return (
