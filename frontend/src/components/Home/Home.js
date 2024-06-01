@@ -64,7 +64,7 @@ const Home = () => {
                     <div className="transparent-card" key={index}>
                         <img src={commandInjectionIcon} alt="Command Injection Icon" />
                         <h3>{challenge.title}</h3>
-                        <p className="status recommended">In progress</p>
+                        <p className="status recommended">Random challenge</p>
                     </div>
                 ))}
             </div>
