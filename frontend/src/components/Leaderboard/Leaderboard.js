@@ -18,7 +18,7 @@ const Leaderboard = () => {
                 }
                 const config = {
                     headers: {
-                        "Authorization": `Bearer ${token}`
+                        "Authorization": `${token}`
                     }
                 };
                 const response = await axios.get('https://localhost:8000/api/leaderboard', config);

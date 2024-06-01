@@ -15,7 +15,9 @@ const Challenges = () => {
                     throw new Error('Authorization token not found');
                 }
                 const config = {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: {
+                        "Authorization": `${token}`
+                    }
                 };
                 const response = await axios.get('https://localhost:8000/api/challenges', config);
                 setChallenges(response.data['hydra:member']);
