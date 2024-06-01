@@ -37,6 +37,7 @@ class LeaderboardRepository extends ServiceEntityRepository
             ->select('l.points')
             ->where('l.user = :userId')
             ->setParameter('userId', $userId)
+            ->setMaxResults(1)
             ->getQuery()
             ->getSingleScalarResult();
     }
