@@ -10,6 +10,7 @@ import Leaderboard from './components/Leaderboard/Leaderboard';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Settings from './components/Settings/Settings';
+import Logout from './Logout';
 
 const MainContent = () => {
     const location = useLocation();
@@ -29,6 +30,7 @@ const MainContent = () => {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/settings" element={<Settings />} />
+                        <Route path="/logout" element={<Logout />} />
                     </Routes>
 
             </div>
