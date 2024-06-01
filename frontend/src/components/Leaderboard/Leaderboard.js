@@ -27,9 +27,7 @@ const Leaderboard = () => {
             } catch (err) {
                 setError(err.message);
                 setLoading(false);
-                if (err.message === 'Authorization token not found') {
-                    navigate('/login'); // Redirect to login page
-                }
+                navigate('/login');
             }
         };
 

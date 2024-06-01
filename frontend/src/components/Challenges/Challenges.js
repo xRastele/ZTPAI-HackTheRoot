@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Challenges.css';
 
@@ -6,6 +7,7 @@ const Challenges = () => {
     const [challenges, setChallenges] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchChallenges = async () => {
@@ -25,6 +27,7 @@ const Challenges = () => {
             } catch (err) {
                 setError(err.message);
                 setLoading(false);
+                navigate('/login');
             }
         };
 
