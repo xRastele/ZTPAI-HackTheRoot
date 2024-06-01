@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Home.css';
 import commandInjectionIcon from '../../assets/command_injection.svg';
@@ -6,6 +7,7 @@ import deserializeMeIcon from '../../assets/deserializeme.svg';
 
 const Home = () => {
     const [data, setData] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('Authorization');
@@ -15,7 +17,10 @@ const Home = () => {
             }
         })
             .then(response => setData(response.data))
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                navigate('/login');
+            });
     }, []);
 
     if (!data) {
