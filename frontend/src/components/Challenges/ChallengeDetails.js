@@ -58,6 +58,7 @@ const ChallengeDetails = () => {
             <h2>{challengeDetails.title}</h2>
             <p><b>Points</b>: {challengeDetails.idReward.points}</p>
             <p><b>Difficulty</b>: {challengeDetails.idDifficulty.name}</p>
+            <p><b>Completed</b>: {challengeDetails.isCompleted ? 'Yes' : 'No'}</p>
             <input className="input-field" type="text" placeholder="Enter flag" value={flag} onChange={e => setFlag(e.target.value)} />
             {errorMessage && <p>{errorMessage}</p>}
             <div className="button-container">
