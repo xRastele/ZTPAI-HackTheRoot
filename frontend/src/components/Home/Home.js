@@ -34,9 +34,9 @@ const Home = () => {
                     <p>{data.completedChallengesCount} challenges completed</p>
                     <h2>Rank: {data.rank}</h2>
                     <div className="progress-bar">
-                        <div className="progress" style={{width: '10%'}}></div>
+                        <div className="progress" style={{width: `${((data.points / data.rankMaxPoints) * 100).toFixed(2)}%`}}></div>
                     </div>
-                    <p>{data.points}/1000 pts</p>
+                    <p>{data.points}/{data.rankMaxPoints} pts</p>
                 </div>
                 <div className="card">
                     <p>Get access to paid challenges</p>
@@ -55,7 +55,7 @@ const Home = () => {
                             <p>{path.description}</p>
                         </div>
                     ))}
-                    <div className="arrow">{'>'}</div>
+                    <div className="arrow invisible">{'>'}</div>
                 </div>
             </div>
 

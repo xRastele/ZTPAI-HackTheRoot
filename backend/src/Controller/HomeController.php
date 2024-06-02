@@ -79,6 +79,7 @@ class HomeController extends AbstractController
             'challengeTitles' => $challengeTitles,
             'points' => $points,
             'rank' => $rank->getName(),
+            'rankMaxPoints' => $rank->getMaxPoints(),
             'learningPaths' => $learningPaths
         ]);
     }
