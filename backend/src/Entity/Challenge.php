@@ -6,11 +6,13 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
 use App\Repository\ChallengeRepository;
+use App\State\ChallengeCollectionStateProvider;
+use App\State\ChallengeStateProvider;
 use Doctrine\ORM\Mapping as ORM;
 #[ApiResource(
     operations: [
-        new GetCollection(),
-        new Get(),
+        new GetCollection(provider: ChallengeCollectionStateProvider::class),
+        new Get(provider: ChallengeStateProvider::class),
     ]
 )]
 #[ORM\Entity(repositoryClass: ChallengeRepository::class)]
@@ -31,6 +33,18 @@ class Challenge
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
+
+    private ?bool $is_completed = false;
+
+    public function getIsCompleted(): ?bool
+    {
+        return $this->is_completed;
+    }
+
+    public function setIsCompleted(?bool $is_completed): void
+    {
+        $this->is_completed = $is_completed;
+    }
 
     public function getId(): ?int
     {
