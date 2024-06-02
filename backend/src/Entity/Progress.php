@@ -6,7 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProgressRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+#[ApiResource()]
 #[ORM\Entity(repositoryClass: ProgressRepository::class)]
 class Progress
 {
@@ -63,7 +63,7 @@ class Progress
         return $this->is_completed;
     }
 
-    public function setCompleted(bool $is_completed): static
+    public function setCompleted(bool $is_completed): self
     {
         $this->is_completed = $is_completed;
 

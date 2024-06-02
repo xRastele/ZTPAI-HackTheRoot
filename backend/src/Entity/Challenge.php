@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use App\Repository\ChallengeRepository;
 use Doctrine\ORM\Mapping as ORM;
 #[ApiResource(
     operations: [
-        new GetCollection()
+        new GetCollection(),
+        new Get(),
     ]
 )]
 #[ORM\Entity(repositoryClass: ChallengeRepository::class)]

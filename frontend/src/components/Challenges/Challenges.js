@@ -37,6 +37,10 @@ const Challenges = () => {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
+    const handleChallengeClick = (id) => {
+        navigate(`/challenges/${id}`);
+    };
+
     return (
         <div className="challenges-page">
             <div className="button-row">
@@ -50,7 +54,7 @@ const Challenges = () => {
                 <p>Reward</p>
             </div>
             {challenges.map((challenge) => (
-                <div className="challenge-row" key={challenge.id}>
+                <div className="challenge-row" key={challenge.id} onClick={() => handleChallengeClick(challenge.id)}>
                     <p>{challenge.title}</p>
                     <p>{challenge.idDifficulty.name}</p>
                     <p>{challenge.idReward.points}</p>

@@ -43,4 +43,30 @@ class ProgressRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getProgressByChallengeIdAndUserId($userId, $challengeId)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.user = :userId')
+            ->andWhere('p.challenge = :challengeId')
+            ->setParameter('userId', $userId)
+            ->setParameter('challengeId', $challengeId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function addProgress(Progress $progress): bool
+    {
+        try {
+            $entityManager = $this->getEntityManager();
+
+            $entityManager->persist($progress);
+            $entityManager->flush();
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }

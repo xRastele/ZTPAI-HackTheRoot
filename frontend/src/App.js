@@ -11,6 +11,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Settings from './components/Settings/Settings';
 import Logout from './Logout';
+import ChallengeDetails from "./components/Challenges/ChallengeDetails";
 
 const MainContent = () => {
     const location = useLocation();
@@ -26,6 +27,7 @@ const MainContent = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/users" element={<Users />} />
                         <Route path="/challenges" element={<Challenges />} />
+                        <Route path="/challenges/:id" element={<ChallengeDetails />} />
                         <Route path="/leaderboard" element={<Leaderboard />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
