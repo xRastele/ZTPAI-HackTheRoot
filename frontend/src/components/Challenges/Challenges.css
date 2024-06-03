@@ -49,3 +49,11 @@
 .challenge-row:last-child {
     border-bottom: 1px solid #fff;
 }
+
+.challenge-row {
+    cursor: pointer;
+}
+
+.challenge-row:hover {
+    background-color: #272727;
+}
