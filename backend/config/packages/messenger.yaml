@@ -8,14 +8,16 @@ framework:
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
 #            async:
 #                dsn: '%env(RABBITMQ_URL)%'
-            amqp: '%env(MESSENGER_TRANSPORT_DSN)%'
+            async:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                serializer: messenger.transport.symfony_serializer
             # failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
-            'App\Message\YourMessage': amqp
+            'App\Message\StartChallengeMessage': async
 # when@test:
 #    framework:
 #        messenger:
