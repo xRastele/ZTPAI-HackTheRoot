@@ -35,3 +35,41 @@
     margin: 0;
     padding: 0;
 }
+
+.container a {
+    text-decoration: none;
+    color: red;
+}
+
+.running-time {
+    color: red;
+}
+
+.machine-link {
+    margin-top: 100px;
+}
+
+button:hover {
+    background-color: #a0a0a0;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.header a:hover {
+    background-color: #272727;
+}
+
+.header a span {
+    margin-left: 5px;
+    position: relative;
+    top: -2px;
+}
