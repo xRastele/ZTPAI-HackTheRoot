@@ -21,10 +21,10 @@ class ChallengeRepository extends ServiceEntityRepository
         parent::__construct($registry, Challenge::class);
     }
 
-    public function getRandomIncompleteChallengeTitles($userId, $challengeIds, $limit = 2)
+    public function getRandomIncompleteChallengesIdAndTitle($userId, $challengeIds, $limit = 2)
     {
         $challenges = $this->createQueryBuilder('c')
-            ->select('c.title')
+            ->select('c.id', 'c.title')
             ->where('c.id IN (:challengeIds)')
             ->setParameter('challengeIds', $challengeIds)
             ->getQuery()

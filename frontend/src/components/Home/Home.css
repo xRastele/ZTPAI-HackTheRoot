@@ -134,3 +134,11 @@ p {
     color: #A0A0A0;
     margin: 0;
 }
+
+.transparent-card {
+    cursor: pointer;
+}
+
+.transparent-card:hover {
+    background-color: #272727;
+}

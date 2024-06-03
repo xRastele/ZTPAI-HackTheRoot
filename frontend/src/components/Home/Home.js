@@ -27,6 +27,10 @@ const Home = () => {
         return <div>Loading...</div>;
     }
 
+    const handleChallengeClick = (id) => {
+        navigate(`/challenges/${id}`);
+    };
+
     return (
         <div className="home-page">
             <div className="row">
@@ -60,8 +64,8 @@ const Home = () => {
             </div>
 
             <div className="row">
-                {data.challengeTitles.map((challenge, index) => (
-                    <div className="transparent-card" key={index}>
+                {data.challenges && data.challenges.map((challenge) => (
+                    <div className="transparent-card" key={challenge.id} onClick={() => handleChallengeClick(challenge.id)}>
                         <img src={commandInjectionIcon} alt="Command Injection Icon" />
                         <h3>{challenge.title}</h3>
                         <p className="status recommended">Random challenge</p>

@@ -68,7 +68,7 @@ class HomeController extends AbstractController
             return !in_array($challenge['id'], array_column($completedChallenges, '1'));
         });
 
-        $challengeTitles = $this->challengeRepository->getRandomIncompleteChallengeTitles($userId, $incompleteChallenges);
+        $twoChallengesIdTitle = $this->challengeRepository->getRandomIncompleteChallengesIdAndTitle($userId, $incompleteChallenges, 2);
 
         //Learning paths (in the middle)
         $learningPaths = $this->learningPathRepository->findTitlesAndDescriptions(2);
@@ -76,7 +76,7 @@ class HomeController extends AbstractController
         return new JsonResponse([
             'username' => $user->getUsername(),
             'completedChallengesCount' => $completedChallengesCount,
-            'challengeTitles' => $challengeTitles,
+            'challenges' => $twoChallengesIdTitle,
             'points' => $points,
             'rank' => $rank->getName(),
             'rankMaxPoints' => $rank->getMaxPoints(),
