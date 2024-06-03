@@ -71,6 +71,12 @@ class ChallengeController extends AbstractController
                         ], 400);
                     }
                 }
+                else {
+                    //If flag is wrong
+                    return $this->json([
+                        'message' => 'Wrong flag provided'
+                    ], Response::HTTP_BAD_REQUEST);
+                }
             }
             else
                 //If something went wrong
@@ -79,7 +85,7 @@ class ChallengeController extends AbstractController
                 ], Response::HTTP_BAD_REQUEST);
         }
 
-        //Wrong flag provided
+        //Error while submitting flag
         return $this->json([
             'message' => 'Error while submitting flag',
         ], Response::HTTP_BAD_REQUEST);
