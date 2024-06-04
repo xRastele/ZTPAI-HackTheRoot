@@ -35,7 +35,7 @@ class MessageController extends AbstractController
             $this->bus->dispatch($message);
 
             $mainPort = 8000;
-            $newPort = $mainPort + $challengeId;
+            $newPort = $mainPort + (int) $challengeId;
             $challengePath = "http://localhost:$newPort/";
 
             return $this->json(['status' => 'Machine started', 'challenge_path' => $challengePath, 'timeout' => $timeout], 200);

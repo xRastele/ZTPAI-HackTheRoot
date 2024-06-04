@@ -52,7 +52,7 @@ def start_challenge(challenge_id, timeout):
             container = client.containers.run(
                 container_image_text,
                 detach=True,
-                ports={'80/tcp': 8001}
+                ports={'80/tcp': (8000+int(challenge_id))}
             )
 
             reset_event = threading.Event()
